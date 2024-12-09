@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Project 1</string>
+    <string name="zareg">Зарегистрироваться</string>
+    <string name="bezreg">Продолжить без регистрации</string>
+    <string name="textview1_1">Открой для себя\nогромный ассортимент одежды!</string>
+    <string name="Домой">Домой\n</string>
+    <string name="Поиск">Поиск\n</string>
+    <string name="Корзина">Корзина\n</string>
+    <string name="Профиль">Профиль\n</string>
+</resources>
