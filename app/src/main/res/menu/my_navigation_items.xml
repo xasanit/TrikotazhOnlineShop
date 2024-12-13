@@ -10,12 +10,11 @@
         android:title="@string/Поиск"
         android:icon="@drawable/magnifying_glass" />
     <item
-        android:id="@+id/cart_page"
+        android:id="@+id/basket_page"
         android:title="@string/Корзина"
         android:icon="@drawable/cart" />
     <item
         android:id="@+id/profile_page"
         android:title="@string/Профиль"
         android:icon="@drawable/person" />
-
 </menu>

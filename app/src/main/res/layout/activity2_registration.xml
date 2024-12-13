@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#edebed">
+    android:background="#5F9DA4">
 
     <TextView
         android:id="@+id/textView2"
@@ -13,6 +13,7 @@
         android:layout_marginTop="48dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Регистрация"
+        android:textColor="@color/black"
         android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextText3"
         app:layout_constraintEnd_toEndOf="parent"

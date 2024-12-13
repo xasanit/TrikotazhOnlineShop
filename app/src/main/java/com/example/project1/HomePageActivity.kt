@@ -1,12 +1,15 @@
 package com.example.project1
 
+import BaseActivity
 import ProductAdapter
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class HomePageActivity: AppCompatActivity() {
+class HomePageActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_page_activity)
@@ -21,5 +24,14 @@ class HomePageActivity: AppCompatActivity() {
         )
 
         recyclerView.adapter = ProductAdapter(products)
+        setupBottomNavigation(this::class.java)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        Log.d("BottomNav", "BottomNavigationView initialized: $bottomNavigationView")
+
+
+    }
+
+    override fun getLayoutResId(): Int {
+        return R.layout.home_page_activity
     }
 }
