@@ -36,6 +36,9 @@
         <activity
             android:name=".ProfileActivity">
         </activity>
+        <activity
+            android:name=".ProductDetailsActivity">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

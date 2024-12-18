@@ -4,17 +4,23 @@ import BaseActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import fragments.ProfileFragment
 
-class ProfileActivity: BaseActivity() {
+class ProfileActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.profile_activity)
-        setupBottomNavigation(this::class.java)
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
+        if (savedInstanceState == null) {
+            // Добавление фрагмента в контейнер при первом запуске
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, ProfileFragment())
+                .commit()
+        }
     }
 
     override fun getLayoutResId(): Int {
-        return R.layout.profile_activity
+        return R.layout.activity_container // Контейнер для фрагментов
     }
+
 }
