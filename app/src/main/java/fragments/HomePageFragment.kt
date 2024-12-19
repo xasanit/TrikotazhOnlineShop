@@ -1,49 +1,88 @@
 package fragments
 
-import ProductAdapter
-import android.app.Activity.RESULT_OK
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project1.Product
-import com.example.project1.ProductDetailsActivity
+import com.example.project1.App
+import com.example.project1.ProductDao
+import com.example.project1.ProductDetailsFragment
+import com.example.project1.ProductEntity
 import com.example.project1.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import com.example.project1.adapter.ProductAdapter
 
 @Suppress("DEPRECATION")
 class HomePageFragment : Fragment(R.layout.home_page_activity) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var productAdapter: ProductAdapter
-    private val products = listOf(
-        Product("Hoodie", "$1000", R.drawable._e753dae28676fa25c6d5b98d714507e),
-        Product("Tolstovka", "$500", R.drawable.fc90acea67790611d62567819f0e2f),
-        Product("Kofta naxuii", "$300", R.drawable.c6d22a2206a39a3cdfed4d9aad088ed0)
+    private lateinit var productDao: ProductDao
+
+    // Список продуктов для добавления в базу данных, если она пустая
+    private val defaultProducts = listOf(
+        ProductEntity(name = "Hoodie", price = "$1000", imageResId = R.drawable._e753dae28676fa25c6d5b98d714507e, description = "Комфортный и очень удобный худи по выгодной цене!"),
+        ProductEntity(name = "Tolstovka", price = "$500", imageResId = R.drawable.fc90acea67790611d62567819f0e2f, description = "Крутая мощная молодежная толстовка"),
+        ProductEntity(name = "Kofta", price = "$300", imageResId = R.drawable.c6d22a2206a39a3cdfed4d9aad088ed0, description = "У этой одежды нет конкурентов на этот сезон!")
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Инициализация productDao
+        productDao = (requireActivity().application as App).database.productDao()
+
+        // Проверяем, есть ли товары в базе данных, если нет - добавляем дефолтные
+        checkAndAddProductsToDatabase()
+
         // Настройка RecyclerView
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        productAdapter = ProductAdapter(products) { product -> openProductDetails(product) }
-        recyclerView.adapter = productAdapter
+
+        // Загружаем товары из базы данных
+        loadProductsFromDatabase()
 
         // Обработка поиска, если нужно
         val searchView: SearchView = view.findViewById(R.id.searchView)
-        // Добавьте логику поиска, если необходимо
+        // Логика поиска товаров по имени (если необходимо)
     }
 
-    private fun openProductDetails(product: Product) {
-        val intent = Intent(requireContext(), ProductDetailsActivity::class.java)
-        intent.putExtra("name", product.name)
-        intent.putExtra("price", product.price)
-        intent.putExtra("imageResId", product.imageResId)
-        startActivity(intent)
+    // Функция для добавления товаров в базу данных
+    private fun checkAndAddProductsToDatabase() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val productsInDb = productDao.getAllProducts()
+            if (productsInDb.isEmpty()) {
+                // Если в базе данных нет продуктов, добавляем дефолтные
+                for (product in defaultProducts) {
+                    productDao.insertProduct(product)
+                }
+            }
+        }
+    }
+
+    // Функция для загрузки товаров из базы данных
+    private fun loadProductsFromDatabase() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val productEntities = productDao.getAllProducts() // Получаем все продукты из базы данных
+            withContext(Dispatchers.Main) {
+                productAdapter = ProductAdapter(productEntities) { product -> openProductDetails(product) }
+                recyclerView.adapter = productAdapter
+            }
+        }
+    }
+
+    // Открытие фрагмента с деталями товара
+    private fun openProductDetails(product: ProductEntity) {
+        val fragment = ProductDetailsFragment.newInstance(product.name, product.price, product.imageResId, product.description)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
+
