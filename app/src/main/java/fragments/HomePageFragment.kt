@@ -26,10 +26,11 @@ class HomePageFragment : Fragment(R.layout.home_page_activity) {
 
     // Список продуктов для добавления в базу данных, если она пустая
     private val defaultProducts = listOf(
-        ProductEntity(name = "Hoodie", price = "$1000", imageResId = R.drawable._e753dae28676fa25c6d5b98d714507e, description = "Комфортный и очень удобный худи по выгодной цене!"),
-        ProductEntity(name = "Tolstovka", price = "$500", imageResId = R.drawable.fc90acea67790611d62567819f0e2f, description = "Крутая мощная молодежная толстовка"),
-        ProductEntity(name = "Kofta", price = "$300", imageResId = R.drawable.c6d22a2206a39a3cdfed4d9aad088ed0, description = "У этой одежды нет конкурентов на этот сезон!")
+        ProductEntity(name = "Hoodie", price = "$1000", imageResId = R.drawable._e753dae28676fa25c6d5b98d714507e, description = "Комфортный и очень удобный худи по выгодной цене!", isInBasket = false),
+        ProductEntity(name = "Tolstovka", price = "$500", imageResId = R.drawable.fc90acea67790611d62567819f0e2f, description = "Крутая мощная молодежная толстовка", isInBasket = false),
+        ProductEntity(name = "Kofta", price = "$300", imageResId = R.drawable.c6d22a2206a39a3cdfed4d9aad088ed0, description = "У этой одежды нет конкурентов на этот сезон!", isInBasket = false)
     )
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,7 +79,14 @@ class HomePageFragment : Fragment(R.layout.home_page_activity) {
 
     // Открытие фрагмента с деталями товара
     private fun openProductDetails(product: ProductEntity) {
-        val fragment = ProductDetailsFragment.newInstance(product.name, product.price, product.imageResId, product.description)
+        val fragment = ProductDetailsFragment.newInstance(
+            id = product.id, // Передаем id товара
+            name = product.name,
+            price = product.price,
+            imageResId = product.imageResId,
+            description = product.description,
+            isInBasket = product.isInBasket
+        )
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)

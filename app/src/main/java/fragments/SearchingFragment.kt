@@ -79,7 +79,14 @@ class SearchingFragment : Fragment(R.layout.searching_page_activity) {
     }
 
     private fun openProductDetails(product: ProductEntity) {
-        val fragment = ProductDetailsFragment.newInstance(product.name, product.price, product.imageResId, product.description)
+        val fragment = ProductDetailsFragment.newInstance(
+            id = product.id,
+            name = product.name,
+            price = product.price,
+            imageResId = product.imageResId,
+            description = product.description,
+            isInBasket = product.isInBasket
+        )
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)

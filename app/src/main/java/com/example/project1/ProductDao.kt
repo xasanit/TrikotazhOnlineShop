@@ -14,4 +14,13 @@ interface ProductDao {
 
     @Query("DELETE FROM products WHERE id = :productId")
     suspend fun deleteProductById(productId: Int)
+
+    @Query("SELECT * FROM products WHERE isInBasket = 1")
+    suspend fun getBasketProducts(): List<ProductEntity> // Получение только продуктов в корзине
+
+    @Query("UPDATE products SET isInBasket = 1 WHERE id = :productId")
+    suspend fun addToBasket(productId: Int) // Добавить в корзину
+
+    @Query("UPDATE products SET isInBasket = 0 WHERE id = :productId")
+    suspend fun removeFromBasket(productId: Int) // Удалить из корзины
 }
