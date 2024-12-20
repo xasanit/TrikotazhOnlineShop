@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     android:background="#5F9DA4">
 
-    <ImageView
-        android:id="@+id/logoImageView"
-        android:layout_width="156dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shop_logo_2" />
-
     <!--    <androidx.recyclerview.widget.RecyclerView-->
     <!--        android:id="@+id/recycler_view"-->
     <!--        android:layout_width="match_parent"-->
@@ -25,20 +14,6 @@
     <!--        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"-->
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toBottomOf="@+id/imageView2" />-->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Здесь пока ничего нет :("
-        android:textColor="@color/black"
-        android:fontFamily="@font/montserrat_semibold"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoImageView">
-    </TextView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -52,14 +27,81 @@
         app:menu="@menu/my_navigation_items" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="23dp"
+        android:id="@+id/profile_shop_logo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/swipe_to_left" />
+        app:srcCompat="@drawable/shop_logo" />
+
+    <TextView
+        android:id="@+id/shopname_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="TRIKOTAZH.shop"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_shop_logo" />
+
+    <TextView
+        android:id="@+id/information_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="информация о магазине:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shopname_textview" />
+
+    <TextView
+        android:id="@+id/information_textview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="lorem ipsum dolor"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/information_label" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_new_item_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Добавить новый товар"
+        android:padding="15dp"
+        android:textSize="20sp"
+        android:background="@drawable/button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/information_textview" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/show_my_items_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Показать мои товары"
+        android:padding="15dp"
+        android:textSize="20sp"
+        android:background="@drawable/button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_new_item_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

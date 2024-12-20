@@ -51,7 +51,10 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.support.annotations)
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1") // Используем ViewModel и viewModelScope
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1") // Для LiveData
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

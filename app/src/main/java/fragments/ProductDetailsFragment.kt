@@ -9,20 +9,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
 class ProductDetailsFragment : Fragment() {
 
     private lateinit var productDao: ProductDao
-    private lateinit var productDetailsViewModel: ProductDetailsViewModel
-
     private var productId: Int? = null
     private var productName: String? = null
     private var productPrice: String? = null
     private var productImageResId: Int = 0
     private var productDescription: String? = null
+    private var isInBasket: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +39,8 @@ class ProductDetailsFragment : Fragment() {
             productPrice = it.getString("price")
             productImageResId = it.getInt("imageResId", 0)
             productDescription = it.getString("description")
+            isInBasket = it.getBoolean("isInBasket", false)
         }
-
-        // Инициализация ViewModel
-        productDetailsViewModel = ViewModelProvider(this).get(ProductDetailsViewModel::class.java)
 
         // Настройка UI
         val nameTextView = view.findViewById<TextView>(R.id.product_name)
@@ -60,34 +56,30 @@ class ProductDetailsFragment : Fragment() {
 
         // Настройка кнопки "Добавить в корзину"
         val addToBasketButton = view.findViewById<Button>(R.id.btn_add_to_basket)
-        updateAddToBasketButton(addToBasketButton)
-
+        if (isInBasket) {
+            addToBasketButton.text = "Убрать из корзины"
+        } else {
+            addToBasketButton.text = "Добавить в корзину"
+        }
         addToBasketButton.setOnClickListener {
             productId?.let {
                 lifecycleScope.launch {
-                    if (productDetailsViewModel.isInBasket) {
+                    if(isInBasket) {
+                        addToBasketButton.text = "Добавить в корзину" // Меняем текст на кнопке
                         productDao.removeFromBasket(it)
                         Toast.makeText(requireContext(), "Товар удален из корзины", Toast.LENGTH_SHORT).show()
-                        productDetailsViewModel.isInBasket = false
-                    } else {
+                        isInBasket = false
+                    }
+                    else {
+                        addToBasketButton.text = "Убрать из корзины" // Меняем текст на кнопке
                         productDao.addToBasket(it)
                         Toast.makeText(requireContext(), "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
-                        productDetailsViewModel.isInBasket = true
+                        isInBasket = true
                     }
-                    updateAddToBasketButton(addToBasketButton)
                 }
             }
         }
-
         return view
-    }
-
-    private fun updateAddToBasketButton(button: Button) {
-        if (productDetailsViewModel.isInBasket) {
-            button.text = "Убрать из корзины"
-        } else {
-            button.text = "Добавить в корзину"
-        }
     }
 
     companion object {
@@ -99,13 +91,12 @@ class ProductDetailsFragment : Fragment() {
                 putString("price", price)
                 putInt("imageResId", imageResId)
                 putString("description", description)
-                putBoolean("isInBasket", isInBasket)  // Добавляем isInBasket
+                putBoolean("isInBasket", isInBasket)
             }
             fragment.arguments = args
             return fragment
         }
     }
-
 }
 
 

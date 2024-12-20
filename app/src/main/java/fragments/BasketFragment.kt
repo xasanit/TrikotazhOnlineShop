@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project1.AppDatabase
 import com.example.project1.ProductDao
+import com.example.project1.ProductDetailsFragment
 import com.example.project1.ProductEntity
 import com.example.project1.R
 import com.example.project1.adapter.ProductAdapter
@@ -46,9 +47,17 @@ class BasketFragment : Fragment(R.layout.basket_activity) {
     private fun loadBasketProducts() {
         lifecycleScope.launch(Dispatchers.IO) {
             val basketProducts = productDao.getAllProducts().filter { it.isInBasket }
+            if (basketProducts.isEmpty()) {
+                withContext(Dispatchers.Main) {
+                    // Если корзина пуста, скрываем RecyclerView и отображаем TextView
+                    recyclerView.visibility = View.GONE
+                    view?.findViewById<View>(R.id.nothing_to_show)?.visibility = View.VISIBLE
+                }
+            }
             withContext(Dispatchers.Main) {
                 // Используем уже существующий адаптер
-                productAdapter = ProductAdapter(basketProducts) { product -> removeFromBasket(product) }
+                productAdapter = ProductAdapter(basketProducts) {
+                    product -> openProductDetails(product) }
                 recyclerView.adapter = productAdapter
             }
         }
@@ -60,6 +69,21 @@ class BasketFragment : Fragment(R.layout.basket_activity) {
             productDao.removeFromBasket(product.id)
             loadBasketProducts() // Обновляем корзину
         }
+    }
+
+    private fun openProductDetails(product: ProductEntity) {
+        val fragment = ProductDetailsFragment.newInstance(
+            id = product.id, // Передаем id товара
+            name = product.name,
+            price = product.price,
+            imageResId = product.imageResId,
+            description = product.description,
+            isInBasket = product.isInBasket
+        )
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
 //    private fun clearBasket() {

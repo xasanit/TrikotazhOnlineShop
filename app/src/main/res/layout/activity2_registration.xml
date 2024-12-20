@@ -15,64 +15,78 @@
         android:text="Регистрация"
         android:textColor="@color/black"
         android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText3"
+        app:layout_constraintBottom_toTopOf="@+id/username_field"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/username_field"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="100dp"
-        android:ems="10"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="Пароль"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextText3"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="40dp"
         android:ems="10"
         android:fontFamily="@font/montserrat_medium"
         android:hint="Имя пользователя"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/email_field"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/email_field"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="48dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Электронная почта"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/password_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/password_field"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="36dp"
         android:ems="10"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="Электронная почта"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        android:hint="Пароль"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/shopname_field"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button3"
+        android:id="@+id/confirm_button"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="108dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginBottom="96dp"
         android:background="@drawable/button_background"
+        android:fontFamily="@font/montserrat_bold"
         android:text="Подтвердить"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/shopname_field"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="56dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Название магазина"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
