@@ -7,10 +7,11 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [ProductEntity::class], version = 2)
+@Database(entities = [ProductEntity::class, UserEntity::class], version = 3) // Обновили версию до 3
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun productDao(): ProductDao
+    abstract fun userDao(): UserDao // Добавили DAO для пользователей
 
     companion object {
         @Volatile
@@ -18,10 +19,29 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
+                // Миграция с версии 1 до 2
                 val MIGRATION_1_2 = object : Migration(1, 2) {
                     override fun migrate(db: SupportSQLiteDatabase) {
-                        // Добавляем поле isInBasket
                         db.execSQL("ALTER TABLE products ADD COLUMN isInBasket INTEGER NOT NULL DEFAULT 0")
+                    }
+                }
+
+                // Миграция с версии 2 до 3
+                val MIGRATION_2_3 = object : Migration(2, 3) {
+                    override fun migrate(db: SupportSQLiteDatabase) {
+                        // Создаем таблицу users
+                        db.execSQL(
+                            """
+                            CREATE TABLE users (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                                username TEXT NOT NULL,
+                                email TEXT NOT NULL,
+                                password TEXT NOT NULL,
+                                shop TEXT NOT NULL,
+                                logoResId INTEGER NOT NULL
+                            )
+                            """.trimIndent()
+                        )
                     }
                 }
 
@@ -30,7 +50,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_database"
                 )
-                    .addMigrations(MIGRATION_1_2) // Добавляем миграцию
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3) // Добавили миграцию 2 -> 3
                     .build()
 
                 INSTANCE = instance
@@ -39,3 +59,4 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+
