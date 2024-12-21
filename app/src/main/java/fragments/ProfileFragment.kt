@@ -1,11 +1,14 @@
 package fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.project1.AddingNewItemActivity
 import com.example.project1.App
 import com.example.project1.R
 import com.example.project1.UserDao
@@ -17,6 +20,7 @@ class ProfileFragment : Fragment(R.layout.profile_activity) {
     private lateinit var userDao: UserDao
     private lateinit var shopNameTextView: TextView
     private lateinit var shopLogoImageView: ImageView
+    private lateinit var addNewItem: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,6 +28,7 @@ class ProfileFragment : Fragment(R.layout.profile_activity) {
         // Инициализация UI элементов
         shopNameTextView = view.findViewById(R.id.shopname_textview)
         shopLogoImageView = view.findViewById(R.id.profile_shop_logo)
+        addNewItem = view.findViewById(R.id.add_new_item_btn)
 
         // Инициализация базы данных и UserDao
         val database = (requireActivity().application as App).database
@@ -41,6 +46,11 @@ class ProfileFragment : Fragment(R.layout.profile_activity) {
                 shopNameTextView.text = "Магазин не найден"
                 shopLogoImageView.setImageResource(R.drawable.default_logo)
             }
+        }
+
+        addNewItem.setOnClickListener {
+            val intent: Intent = Intent(requireContext(), AddingNewItemActivity::class.java)
+            startActivity(intent)
         }
     }
 
