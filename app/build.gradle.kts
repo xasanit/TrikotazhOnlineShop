@@ -43,6 +43,7 @@ dependencies {
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:2.0.21")
     implementation("androidx.room:room-ktx:2.6.1")
     implementation ("androidx.room:room-runtime:2.6.1")
+    implementation(libs.androidx.material3.android)
     ksp(libs.androidx.room.compiler)
     implementation("com.google.android.material:material:1.10.0")
     implementation(libs.androidx.core.ktx)

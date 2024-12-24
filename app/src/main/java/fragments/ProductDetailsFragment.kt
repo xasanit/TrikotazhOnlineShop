@@ -21,6 +21,7 @@ class ProductDetailsFragment : Fragment() {
     private var productImageResId: Int = 0
     private var productDescription: String? = null
     private var isInBasket: Boolean = false
+    private var shop: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +41,7 @@ class ProductDetailsFragment : Fragment() {
             productImageResId = it.getInt("imageResId", 0)
             productDescription = it.getString("description")
             isInBasket = it.getBoolean("isInBasket", false)
+            shop = it.getString("shopName")
         }
 
         // Настройка UI
@@ -47,12 +49,14 @@ class ProductDetailsFragment : Fragment() {
         val priceTextView = view.findViewById<TextView>(R.id.product_price)
         val descriptionTextView = view.findViewById<TextView>(R.id.product_description)
         val imageView = view.findViewById<ImageView>(R.id.product_image)
+        val shopName = view.findViewById<TextView>(R.id.shop_name)
 
         // Устанавливаем данные в UI
         nameTextView.text = productName
         priceTextView.text = productPrice
         descriptionTextView.text = productDescription
         imageView.setImageResource(productImageResId)
+        shopName.text = shop
 
         // Настройка кнопки "Добавить в корзину"
         val addToBasketButton = view.findViewById<Button>(R.id.btn_add_to_basket)
@@ -83,7 +87,7 @@ class ProductDetailsFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(id: Int, name: String, price: String, imageResId: Int, description: String, isInBasket: Boolean): ProductDetailsFragment {
+        fun newInstance(id: Int, name: String, price: String, imageResId: Int, description: String, isInBasket: Boolean, shop: String): ProductDetailsFragment {
             val fragment = ProductDetailsFragment()
             val args = Bundle().apply {
                 putInt("id", id)
@@ -92,6 +96,7 @@ class ProductDetailsFragment : Fragment() {
                 putInt("imageResId", imageResId)
                 putString("description", description)
                 putBoolean("isInBasket", isInBasket)
+                putString("shopName", shop)
             }
             fragment.arguments = args
             return fragment

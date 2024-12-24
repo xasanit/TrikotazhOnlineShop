@@ -40,6 +40,9 @@
         <activity
             android:name=".AddingNewItemActivity">
         </activity>
+        <activity
+            android:name=".MyItemsActivity">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
