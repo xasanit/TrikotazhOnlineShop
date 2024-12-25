@@ -2,17 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#5F9DA4">
-    <SearchView
-        android:id="@+id/searchView"
+
+    <TextView
+        android:id="@+id/actual_label"
+        android:text="Актуальное"
+        android:textSize="26sp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColor="@color/black"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:background="#edebed"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:background="@drawable/search_view_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,26 +25,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="156dp"
-        android:layout_height="30dp"
+        android:layout_width="151dp"
+        android:layout_height="34dp"
         android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toStartOf="@+id/notificationsButton"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shop_logo_2" />
-
-    <ImageView
-        android:id="@+id/notificationsButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.983"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notifications_bell_button_icon_icons_com_72648" />
+        app:srcCompat="@drawable/shop_logo_2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -48,7 +41,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/actual_label" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -61,16 +54,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/my_navigation_items" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="23dp"
-        app:layout_constraintBottom_toTopOf="@+id/searchView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/swipe_to_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

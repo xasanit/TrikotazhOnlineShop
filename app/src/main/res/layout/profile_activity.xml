@@ -26,16 +26,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/my_navigation_items" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#edebed"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Мой профиль"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
     <ImageView
         android:id="@+id/profile_shop_logo"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/shop_logo" />
 
     <TextView

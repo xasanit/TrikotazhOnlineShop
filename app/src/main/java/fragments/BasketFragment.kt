@@ -37,11 +37,6 @@ class BasketFragment : Fragment(R.layout.basket_activity) {
         // Загружаем товары из корзины
         loadBasketProducts()
 
-        // Обработка кнопки "Очистить корзину" или других действий
-//        val clearBasketButton = view.findViewById<Button>(R.id.btn_clear_basket)
-//        clearBasketButton.setOnClickListener {
-//            clearBasket()
-//        }
     }
 
     private fun loadBasketProducts() {
@@ -86,12 +81,4 @@ class BasketFragment : Fragment(R.layout.basket_activity) {
             .addToBackStack(null)
             .commit()
     }
-
-//    private fun clearBasket() {
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            // Удаляем все товары из корзины
-//            productDao.clearBasket()
-//            loadBasketProducts() // Обновляем корзину
-//        }
-//    }
 }

@@ -2,6 +2,7 @@ package fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +24,7 @@ class SearchingFragment : Fragment(R.layout.searching_page_activity) {
     private lateinit var productAdapter: ProductAdapter
     private lateinit var productDao: ProductDao
     private lateinit var searchView: SearchView
+    private lateinit var prevFragmentButton: ImageView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

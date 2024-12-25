@@ -47,10 +47,6 @@ class HomePageFragment : Fragment(R.layout.home_page_activity) {
 
         // Загружаем товары из базы данных
         loadProductsFromDatabase()
-
-        // Обработка поиска, если нужно
-        val searchView: SearchView = view.findViewById(R.id.searchView)
-        // Логика поиска товаров по имени (если необходимо)
     }
 
     // Функция для добавления товаров в базу данных
