@@ -22,6 +22,7 @@ class ProductDetailsFragment : Fragment() {
     private var productDescription: String? = null
     private var isInBasket: Boolean = false
     private var shop: String? = null
+    private var kategory: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +43,7 @@ class ProductDetailsFragment : Fragment() {
             productDescription = it.getString("description")
             isInBasket = it.getBoolean("isInBasket", false)
             shop = it.getString("shopName")
+            kategory = it.getString("kategory")
         }
 
         // Настройка UI
@@ -50,6 +52,7 @@ class ProductDetailsFragment : Fragment() {
         val descriptionTextView = view.findViewById<TextView>(R.id.product_description)
         val imageView = view.findViewById<ImageView>(R.id.product_image)
         val shopName = view.findViewById<TextView>(R.id.shop_name)
+        val kategoryLabel = view.findViewById<TextView>(R.id.kategory_label)
 
         // Устанавливаем данные в UI
         nameTextView.text = productName
@@ -57,6 +60,7 @@ class ProductDetailsFragment : Fragment() {
         descriptionTextView.text = productDescription
         imageView.setImageResource(productImageResId)
         shopName.text = shop
+        kategoryLabel.text = kategory
 
         // Настройка кнопки "Добавить в корзину"
         val addToBasketButton = view.findViewById<Button>(R.id.btn_add_to_basket)
@@ -87,7 +91,7 @@ class ProductDetailsFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(id: Int, name: String, price: String, imageResId: Int, description: String, isInBasket: Boolean, shop: String): ProductDetailsFragment {
+        fun newInstance(id: Int, name: String, price: String, imageResId: Int, description: String, isInBasket: Boolean, shop: String, kategory: String): ProductDetailsFragment {
             val fragment = ProductDetailsFragment()
             val args = Bundle().apply {
                 putInt("id", id)
@@ -97,6 +101,7 @@ class ProductDetailsFragment : Fragment() {
                 putString("description", description)
                 putBoolean("isInBasket", isInBasket)
                 putString("shopName", shop)
+                putString("kategory", kategory)
             }
             fragment.arguments = args
             return fragment

@@ -19,6 +19,7 @@
         app:srcCompat="@drawable/default_logo" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/newitem_name_textviewset"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -33,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/new_item_img" />
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/new_item_name"
         android:layout_width="200dp"
         android:layout_height="50dp"
@@ -47,22 +49,26 @@
         app:layout_constraintTop_toBottomOf="@+id/new_item_img" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/newitem_price_textviewset"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="Цена"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/new_item_price"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newitem_name_textviewset" />
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/new_item_price"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:inputType="text"
@@ -72,22 +78,52 @@
         app:layout_constraintTop_toBottomOf="@+id/new_item_name" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="TextView"
+        android:text="Описание \n товара"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/new_item_description"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newitem_price_textviewset" />
 
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Категория"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/action_bar_spinner"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Spinner
+        android:textColor="@color/black"
+        android:id="@+id/action_bar_spinner"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_item_description">
+    </Spinner>
+
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/new_item_description"
         android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Введите текст..."
@@ -102,25 +138,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="100dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button_background"
         android:text="Отмена"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_item_description" />
+        app:layout_constraintTop_toBottomOf="@+id/action_bar_spinner" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/add_new_item_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="100dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_background"
         android:text="Добавить товар"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cancel_button" />

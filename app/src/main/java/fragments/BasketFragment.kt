@@ -74,7 +74,8 @@ class BasketFragment : Fragment(R.layout.basket_activity) {
             imageResId = product.imageResId,
             description = product.description,
             isInBasket = product.isInBasket,
-            shop = product.shop
+            shop = product.shop,
+            kategory = product.kategory
         )
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)

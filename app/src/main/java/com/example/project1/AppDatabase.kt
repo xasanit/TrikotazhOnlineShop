@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [ProductEntity::class, UserEntity::class], version = 3) // Обновили версию до 3
+@Database(entities = [ProductEntity::class, UserEntity::class], version = 4) // Обновили версию до 4
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun productDao(): ProductDao
@@ -51,12 +51,18 @@ abstract class AppDatabase : RoomDatabase() {
                     }
                 }
 
+                val MIGRATION_4_5 = object : Migration(4, 5) {
+                    override fun migrate(db: SupportSQLiteDatabase) {
+                        db.execSQL("ALTER TABLE products ADD COLUMN kategory TEXT NOT NULL DEFAULT 0")
+                    }
+                }
+
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "app_database"
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3) // Добавили миграцию 2 -> 3
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5) // Добавили миграцию 4 -> 5
                     .build()
 
                 INSTANCE = instance

@@ -7,6 +7,19 @@
     android:background="#5F9DA4">
 
 
+    <TextView
+        android:id="@+id/kategory_label"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shop_name" />
+
     <ImageView
         android:id="@+id/shopLogo"
         android:layout_width="156dp"
@@ -32,6 +45,7 @@
 
     <TextView
         android:id="@+id/product_name"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -43,6 +57,7 @@
 
     <TextView
         android:id="@+id/product_price"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -54,15 +69,17 @@
 
     <TextView
         android:id="@+id/product_description"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:paddingHorizontal="30dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
         android:fontFamily="@font/montserrat_medium"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_add_to_basket"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shop_name" />
+        app:layout_constraintTop_toBottomOf="@+id/kategory_label" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_add_to_basket"
@@ -70,7 +87,7 @@
         android:layout_marginHorizontal="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="100dp"
         android:text="Добавить в корзину"
         android:textSize="18sp"
         android:fontFamily="@font/montserrat_semibold"
@@ -79,6 +96,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/shop_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

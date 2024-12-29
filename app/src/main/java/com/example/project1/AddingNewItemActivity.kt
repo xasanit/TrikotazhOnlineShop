@@ -1,18 +1,27 @@
 package com.example.project1
 
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import java.io.IOException
 
+@Suppress("DEPRECATION")
 class AddingNewItemActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.adding_new_item_page)
+
+        val kategories: Array<String>
+        kategories = arrayOf("Толстовки и худи", "Обувь", "Аксессуары")
 
         val cancelButton = findViewById<Button>(R.id.cancel_button)
         val confirmButton = findViewById<Button>(R.id.add_new_item_button)
@@ -21,10 +30,19 @@ class AddingNewItemActivity: AppCompatActivity() {
         val itemDescription = findViewById<EditText>(R.id.new_item_description)
         val itemImage = findViewById<ImageView>(R.id.new_item_img)
         val shopName = intent.getStringExtra("SHOP_NAME") ?: "Магазин не найден"
+        val kategorySpinner = findViewById<Spinner>(R.id.action_bar_spinner)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, kategories)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        kategorySpinner.adapter = adapter
 
         val database = AppDatabase.getDatabase(this)
         val productDao = database.productDao()
-        val userDao = database.userDao()
+
+        itemImage.setOnClickListener {
+            val photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.setType("image/*")
+            startActivityForResult(photoPickerIntent, 1)
+        }
 
         confirmButton.setOnClickListener {
             val name = itemName.text.toString().trim()
@@ -32,8 +50,10 @@ class AddingNewItemActivity: AppCompatActivity() {
             val description = itemDescription.text.toString().trim()
             val imageResId = R.drawable.default_logo
             val shop = shopName
+            val kategory = kategorySpinner.selectedItem.toString()
 
-            if(name.isNotEmpty() && price.isNotEmpty() && description.isNotEmpty()) {
+
+            if (name.isNotEmpty() && price.isNotEmpty() && description.isNotEmpty()) {
 
                 val newProduct = ProductEntity(
                     name = name,
@@ -41,15 +61,19 @@ class AddingNewItemActivity: AppCompatActivity() {
                     imageResId = imageResId,
                     description = description,
                     isInBasket = false,
-                    shop = shop
+                    shop = shop,
+                    kategory = kategory
                 )
                 lifecycleScope.launch {
                     productDao.insertProduct(newProduct)
-                    Toast.makeText(this@AddingNewItemActivity, "Товар успешно добавлен", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@AddingNewItemActivity,
+                        "Товар успешно добавлен",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     finish()
                 }
-            }
-            else {
+            } else {
                 Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show()
             }
         }

@@ -12,5 +12,6 @@ data class ProductEntity (
     val imageResId: Int,
     val description: String,
     val isInBasket: Boolean,
-    val shop: String
+    val shop: String,
+    val kategory: String
 )

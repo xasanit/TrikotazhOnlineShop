@@ -26,4 +26,7 @@ interface ProductDao {
 
     @Query("SELECT * FROM products WHERE shop = :shopName")
     suspend fun getProductsByShop(shopName: String): List<ProductEntity>
+
+    @Query("SELECT * FROM products WHERE kategory = :kategoryName")
+    suspend fun getProductsByKategory(kategoryName: String): List<ProductEntity>
 }
