@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/filterTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Фильтр товаров"
+            android:textColor="#5F9DA4"
+            android:textSize="26sp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="center" />
+
+        <!-- Цена -->
+        <TextView
+            android:id="@+id/priceLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Цена:"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat_medium"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="match_parent"
+                android:text="От"
+                android:gravity="center_vertical"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_medium" />
+            <EditText
+                android:id="@+id/start_price"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal"
+                android:hint="0" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="match_parent"
+                android:text="До"
+                android:gravity="center_vertical"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_medium" />
+            <EditText
+                android:id="@+id/end_price"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal"
+                android:hint="..." />
+        </LinearLayout>
+
+        <!-- Категория -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Категория:"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="18sp" />
+            <Spinner
+                android:id="@+id/category_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <!-- Магазин -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Магазин:"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="18sp" />
+            <Spinner
+                android:id="@+id/shop_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <!-- Кнопки -->
+        <Button
+            android:id="@+id/apply_filters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Применить"
+            android:fontFamily="@font/montserrat_semibold"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#5F9DA4"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/reset_filters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сбросить"
+            android:fontFamily="@font/montserrat_semibold"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#5F9DA4"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</ScrollView>
+
+

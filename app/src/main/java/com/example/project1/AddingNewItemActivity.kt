@@ -2,7 +2,9 @@ package com.example.project1
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -14,7 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "UNUSED_EXPRESSION")
 class AddingNewItemActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,8 @@ class AddingNewItemActivity: AppCompatActivity() {
 
         val kategories: Array<String>
         kategories = arrayOf("Толстовки и худи", "Обувь", "Аксессуары")
+
+//        var selectedImageUri: Uri? = null
 
         val cancelButton = findViewById<Button>(R.id.cancel_button)
         val confirmButton = findViewById<Button>(R.id.add_new_item_button)
@@ -44,10 +48,20 @@ class AddingNewItemActivity: AppCompatActivity() {
             startActivityForResult(photoPickerIntent, 1)
         }
 
+//        fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//            super.onActivityResult(requestCode, resultCode, data)
+//            if (requestCode == 1 && resultCode == RESULT_OK) {
+//                selectedImageUri = data?.data
+//                // Устанавливаем изображение в ImageView
+//                itemImage.setImageURI(selectedImageUri)
+//            }
+//        }
+
         confirmButton.setOnClickListener {
             val name = itemName.text.toString().trim()
             val price = itemPrice.text.toString().trim()
             val description = itemDescription.text.toString().trim()
+//            val imageResId = selectedImageUri?.toString() ?: "Изображение не найдено!"
             val imageResId = R.drawable.default_logo
             val shop = shopName
             val kategory = kategorySpinner.selectedItem.toString()
